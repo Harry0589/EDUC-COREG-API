@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.math.BigInteger;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,21 +17,23 @@ import java.math.BigInteger;
 public class CourseCharacteristicsEntity {
 
     @Id
-    @ManyToOne(optional = true, targetEntity = CoursesEntity.class)
-    @JoinColumn(name = "CHAR_ID", insertable=false, updatable=false)
-    String charID;
+    @Column(name = "CHAR_ID")
+    String id;
+
+    @Id
+    @OneToOne(mappedBy = "courseCharacteristics")
+    private CoursesEntity coursesEntity;
 
     @Basic
     @Column(name = "CHAR_TYPE")
-    private String charType;
+    private String type;
 
     @Basic
     @Column(name = "CODE")
-    private String charCode;
+    private String code;
 
     @Basic
     @Column(name = "DESCRIPTION")
-    private String charDescription;
-
+    private String description;
 
 }

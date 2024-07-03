@@ -6,10 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.math.BigInteger;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -17,22 +15,28 @@ import java.util.UUID;
 @Builder
 @Entity
 @DynamicUpdate
-@Table(name = "CRSE_COURSE_CODE_MAPPINGS" , schema = "COREG")
-public class CourseCodeEntity {
+@Table(name = "CRSE_COURSE_ALLOWABLE_CREDITS" , schema = "COREG")
+public class RequiredCourseEntity {
 
 
     @Id
-    @Column(name = "CRSCDMAP_ID", unique = true, updatable = false, columnDefinition = "BIGINTEGER")
-    private String crscdmapID;
+    @Column(name = "CAC_ID", unique = true, updatable = false, columnDefinition = "BIGINTEGER")
+    private BigInteger cacID;
+
+    @Basic
+    @Column(name = "CREDIT_VALUE")
+    private String creditValue;
+
     @ManyToOne(optional = true, targetEntity = CoursesEntity.class)
     @JoinColumn(name = "CRS_ID", referencedColumnName = "CRS_ID")
     CoursesEntity coursesEntity;
 
     @Basic
-    @Column(name = "EXTERNAL_CODE")
-    private String externalCode;
+    @Column(name = "START_DATE")
+    private String startDate;
 
     @Basic
-    @Column(name = "ORIGINATING_SYSTEM_CHAR_ID")
-    private String originatingSystem;
+    @Column(name = "END_DATE")
+    private String endDate;
+
 }

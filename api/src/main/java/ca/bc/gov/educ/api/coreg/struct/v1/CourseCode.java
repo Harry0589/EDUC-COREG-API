@@ -15,4 +15,6 @@ public class CourseCode  implements Serializable {
 
     private String externalCode;
 
+    private String originatingSystem;
+
 }

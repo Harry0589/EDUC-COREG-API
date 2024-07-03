@@ -20,4 +20,11 @@ public interface CourseInformationAPIEndpoint {
   @Schema(name = "COREG", implementation = Courses.class)
   Courses getCourseInformation(@PathVariable("courseId")  String courseID);
 
+  @GetMapping("/external/{externalCode}")
+  @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK"), @ApiResponse(responseCode = "404", description = "NOT FOUND")})
+  @Transactional(readOnly = true)
+  @Tag(name = "Course Information Entity", description = "Endpoints for course information.")
+  @Schema(name = "COREG", implementation = Courses.class)
+  Courses getCourseInformationByExternalCode(@PathVariable("externalCode")  String externalCode);
+
 }

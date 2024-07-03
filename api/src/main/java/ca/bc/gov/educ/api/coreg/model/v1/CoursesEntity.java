@@ -6,11 +6,9 @@ import jakarta.validation.constraints.PastOrPresent;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-import java.util.UUID;
 
 @Data
 @SuperBuilder
@@ -36,16 +34,10 @@ public class CoursesEntity {
   @Basic
   @Column(name = "END_DATE")
   private LocalDateTime endDate;
-  @Basic
-  @Column(name = "COURSE_CATEGORY_CHAR_ID")
-  private String courseCategory;
+
   @Basic
   @Column(name = "PROGRAM_GUIDE_TITLE")
   private String programGuideTitle;
-
-  @Basic
-  @Column(name = "LANGUAGE_TYPE_CHAR_ID")
-  private String instructionLanguage;
 
   @Basic
   @Column(name = "EXTERNAL_INDICATOR")
@@ -58,6 +50,24 @@ public class CoursesEntity {
 
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
-  @OneToMany(mappedBy = "charID", fetch = FetchType.EAGER, cascade = CascadeType.DETACH, targetEntity = CourseCharacteristicsEntity.class)
-  private Set<CourseCharacteristicsEntity> courseCharacteristics;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "LANGUAGE_TYPE_CHAR_ID", referencedColumnName = "CHAR_ID")
+  private CourseCharacteristicsEntity courseCharacteristics;
+
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "COURSE_CATEGORY_CHAR_ID", referencedColumnName = "CHAR_ID")
+  private CourseCharacteristicsEntity courseCategory;
+
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @OneToMany(mappedBy = "coursesEntity", fetch = FetchType.EAGER, cascade = CascadeType.DETACH, targetEntity = CourseAllowableCreditEntity.class)
+  private Set<CourseAllowableCreditEntity> courseAllowableCredit;
+
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  @OneToMany(mappedBy = "coursesEntity", fetch = FetchType.EAGER, cascade = CascadeType.DETACH, targetEntity = RequiredCourseEntity.class)
+  private Set<RequiredCourseEntity> requiredCourse;
+
 }

@@ -8,14 +8,17 @@ import java.io.Serializable;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CourseCharacteristics implements Serializable {
+public class CourseAllowableCredits implements Serializable {
 
-    private String id;
+    private String cacID;
 
-    private String type;
+    private String creditValue;
 
-    private String code;
+    private String courseID;
 
-    private String description;
+    private String startDate;
+
+    private String endDate;
+
 
 }

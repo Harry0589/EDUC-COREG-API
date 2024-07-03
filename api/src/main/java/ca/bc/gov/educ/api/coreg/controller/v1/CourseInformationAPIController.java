@@ -1,12 +1,11 @@
 package ca.bc.gov.educ.api.coreg.controller.v1;
 
 import ca.bc.gov.educ.api.coreg.endpoint.v1.CourseInformationAPIEndpoint;
+import ca.bc.gov.educ.api.coreg.exception.InvalidPayloadException;
+import ca.bc.gov.educ.api.coreg.exception.errors.ApiError;
 import ca.bc.gov.educ.api.coreg.mapper.v1.CourseInformationMapper;
 import ca.bc.gov.educ.api.coreg.service.v1.CourseInformationService;
 import ca.bc.gov.educ.api.coreg.struct.v1.Courses;
-import ca.bc.gov.educ.api.coreg.exception.EntityNotFoundException;
-import ca.bc.gov.educ.api.coreg.exception.InvalidPayloadException;
-import ca.bc.gov.educ.api.coreg.exception.errors.ApiError;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -47,10 +46,11 @@ public class CourseInformationAPIController implements CourseInformationAPIEndpo
 
   @Override
   public Courses getCourseInformation(String courseID) {
-    var courseInfo = getCourseInformationService().getCourseInformation(courseID);
-    if(courseInfo != null){
-      return mapper.toStructure(courseInfo.get());
-    }else{
-      throw new EntityNotFoundException();
-    }  }
+    return mapper.toStructure(getCourseInformationService().getCourseInformation(courseID));
+  }
+
+  @Override
+  public Courses getCourseInformationByExternalCode(String externalCode) {
+    return mapper.toStructure(getCourseInformationService().getCourseInformationByExternalCode(externalCode));
+  }
 }

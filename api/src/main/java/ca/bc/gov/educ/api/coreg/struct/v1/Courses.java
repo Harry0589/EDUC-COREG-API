@@ -1,9 +1,10 @@
 package ca.bc.gov.educ.api.coreg.struct.v1;
 
-import ca.bc.gov.educ.api.coreg.struct.v1.BaseRequest;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.Valid;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -28,11 +29,11 @@ public class Courses implements Serializable {
 
   private String courseTitle;
 
-  private String courseCategory;
+  private CourseCharacteristics courseCategory;
 
   private String programGuideTitle;
 
-  private List<CourseCharacteristics> courseCharacteristics;
+  private CourseCharacteristics courseCharacteristics;
 
   private String externalIndicator;
 
@@ -42,5 +43,8 @@ public class Courses implements Serializable {
 
   @Valid
   private List<CourseCode> courseCode;
+
+  @Valid
+  private List<CourseAllowableCredits> courseAllowableCredit;
 
 }
