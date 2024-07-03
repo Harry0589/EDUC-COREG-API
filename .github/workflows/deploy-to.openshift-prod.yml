@@ -7,7 +7,7 @@ env:
   # Added this comment
   OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
   OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
-  OPENSHIFT_NAMESPACE: ${{ secrets.INSTITUTE_NAMESPACE_NO_ENV }}-prod
+  OPENSHIFT_NAMESPACE: ${{ secrets.COREG_NAMESPACE_NO_ENV }}-prod
 
   DB_JDBC_CONNECT_STRING: ${{ secrets.DB_JDBC_CONNECT_STRING }}
   DB_PWD: ${{ secrets.DB_PWD }}
@@ -20,13 +20,13 @@ env:
   IMAGE_REGISTRY_USER: ${{ github.actor }}
   IMAGE_REGISTRY_PASSWORD: ${{ github.token }}
 
-  SPRING_BOOT_IMAGE_NAME: institute-api-master
+  SPRING_BOOT_IMAGE_NAME: coreg-api-master
 
-  APP_NAME: 'institute-api'
-  DB_NAME: 'institute_api'
-  REPO_NAME: "educ-institute-api"
+  APP_NAME: 'coreg-api'
+  DB_NAME: 'coreg_api'
+  REPO_NAME: "educ-coreg-api"
   BRANCH: "master"
-  NAMESPACE: ${{ secrets.INSTITUTE_NAMESPACE_NO_ENV }}
+  NAMESPACE: ${{ secrets.COREG_NAMESPACE_NO_ENV }}
   COMMON_NAMESPACE: ${{ secrets.COMMON_NAMESPACE_NO_ENV }}
   TAG: "latest"
   TARGET_ENV: "prod"

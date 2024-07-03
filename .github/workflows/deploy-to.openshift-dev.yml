@@ -6,7 +6,7 @@ env:
   # To get a permanent token, refer to https://github.com/redhat-actions/oc-login/wiki/Using-a-Service-Account-for-GitHub-Actions
   OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
   OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
-  OPENSHIFT_NAMESPACE_DEV: ${{ secrets.INSTITUTE_NAMESPACE_NO_ENV }}-dev
+  OPENSHIFT_NAMESPACE_DEV: ${{ secrets.COREG_NAMESPACE_NO_ENV }}-dev
 
   DB_JDBC_CONNECT_STRING: ${{ secrets.DB_JDBC_CONNECT_STRING }}
   DB_PWD: ${{ secrets.DB_PWD }}
@@ -22,16 +22,16 @@ env:
   # 🖊️ EDIT to specify custom tags for the container image, or default tags will be generated below.
   IMAGE_TAGS: ""
 
-  SPRING_BOOT_IMAGE_NAME: institute-api-master
+  SPRING_BOOT_IMAGE_NAME: coreg-api-master
   DOCKER_ARTIFACTORY_REPO: artifacts.developer.gov.bc.ca/docker-remote
   ARTIFACTORY_REPO: artifacts.developer.gov.bc.ca
 
-  APP_NAME: 'institute-api'
-  DB_NAME: 'institute_api'
-  REPO_NAME: "educ-institute-api"
+  APP_NAME: 'coreg-api'
+  DB_NAME: 'coreg_api'
+  REPO_NAME: "educ-coreg-api"
   BRANCH: "master"
-  APP_NAME_FULL: "institute-api-master"
-  NAMESPACE: ${{ secrets.INSTITUTE_NAMESPACE_NO_ENV }}
+  APP_NAME_FULL: "coreg-api-master"
+  NAMESPACE: ${{ secrets.COREG_NAMESPACE_NO_ENV }}
   COMMON_NAMESPACE: ${{ secrets.COMMON_NAMESPACE_NO_ENV }}
   TAG: "latest"
   MIN_REPLICAS_DEV: "1"
